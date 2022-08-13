@@ -20,6 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 概率论 Test
 
+studio test git
+
 
 R软件的bookdown扩展包是R Markdown的增强版，
 支持自动目录、文献索引、公式编号与引用、定理编号与引用、图表自动编号与引用等功能，
