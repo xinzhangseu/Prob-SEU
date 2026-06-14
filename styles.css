@@ -15,9 +15,12 @@
     display: none !important;
 }
 
-/* 彻底隐藏页面顶部的标题块（包含标题、作者、发布日期等） */
+/* 隐藏首页的标题块（书名、作者、日期），但不影响章节页的章标题 */
 header#title-block-header {
     display: none !important;
+}
+header#title-block-header:has(.chapter-number) {
+    display: block !important;
 }
 
 
