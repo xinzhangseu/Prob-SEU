@@ -93,7 +93,7 @@ format:
       chapters: true
       eq-prefix: ""
     number-depth: 2
-    self-contained: true
+    self-contained: false
 
   xbook-cn-pdf:
     pdf-engine: xelatex

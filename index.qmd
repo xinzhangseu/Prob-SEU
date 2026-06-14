@@ -1,11 +1,7 @@
----
-format:
-  xbook-cn-pdf:
-    exclude: true
----
 
 
 # Introduction {.unnumbered}
+
 Introduction
 
 ## Measure
