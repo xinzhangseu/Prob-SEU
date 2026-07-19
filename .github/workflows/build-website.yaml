@@ -25,7 +25,7 @@ jobs:
         uses: quarto-dev/quarto-actions/install-quarto@v1
 
       - name: Install TinyTeX
-        uses: quarto-dev/quarto-actions/tinytex@v1
+        run: quarto install tinytex
 
       - name: Install libcurl
         run: |
