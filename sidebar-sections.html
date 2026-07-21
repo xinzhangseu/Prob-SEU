@@ -11,7 +11,10 @@
     if (!activeItem || activeItem.querySelector(":scope > ul.current-chapter-sections")) return;
 
     const headings = Array.from(
-      document.querySelectorAll("main.content section.level2 > h2")
+      document.querySelectorAll(
+        "main.content > section.level2 > h2, " +
+        "main.content > section.level1 > section.level2 > h2"
+      )
     ).filter(function (heading) {
       const section = heading.closest("section.level2");
       return !!(heading.id || (section && section.id));
