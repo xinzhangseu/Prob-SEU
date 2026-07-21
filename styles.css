@@ -27,7 +27,7 @@ header#title-block-header:has(.chapter-number) {
 /* 2. 启用精准 Grid 网格：左边固定 260px，右边占满所有剩余空间 */
 #quarto-content {
     display: grid !important;
-    grid-template-columns: 260px 1fr !important;
+    grid-template-columns: 300px 1fr !important;
     width: 100% !important;
     align-items: start !important; /* 保证所有内容从顶部开始自然往下排布 */
 }
@@ -103,3 +103,72 @@ main.content h1, main.content h2, main.content h3, main.content p, #title-block-
     }
 }
 
+
+
+/* ========== Probability-style sidebar navigation ========== */
+
+/* Give long chapter titles enough room and keep the content column aligned. */
+#quarto-sidebar {
+    width: 300px !important;
+}
+
+#quarto-sidebar .sidebar-item-text {
+    white-space: normal;
+}
+
+/* Chapter and nested section hierarchy. */
+#quarto-sidebar .sidebar-item-container {
+    padding-left: 0.35rem !important;
+}
+
+#quarto-sidebar .sidebar-item .sidebar-item .sidebar-item-container {
+    padding-left: 1.35rem !important;
+}
+
+#quarto-sidebar .sidebar-item .sidebar-item .sidebar-link {
+    font-size: 0.88rem;
+}
+
+#quarto-sidebar .sidebar-link.active,
+#quarto-sidebar .sidebar-link[aria-current="page"] {
+    font-weight: 600;
+}
+
+/* Keep the PDF download icon compact, square and free of borders/underlines. */
+#quarto-sidebar .quarto-navigation-tool[aria-label="Download PDF"] {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0 !important;
+    line-height: 1;
+    box-sizing: border-box;
+    border: 0 !important;
+    border-bottom: 0 !important;
+    border-radius: 0;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+#quarto-sidebar .quarto-navigation-tool[aria-label="Download PDF"]:hover,
+#quarto-sidebar .quarto-navigation-tool[aria-label="Download PDF"]:focus,
+#quarto-sidebar .quarto-navigation-tool[aria-label="Download PDF"]:active {
+    border: 0 !important;
+    border-bottom: 0 !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+#quarto-sidebar .quarto-navigation-tool[aria-label="Download PDF"] .bi {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+#quarto-sidebar .quarto-navigation-tool[aria-label="Download PDF"] .bi::before {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1;
+}
