@@ -172,3 +172,42 @@ main.content h1, main.content h2, main.content h3, main.content p, #title-block-
     font-size: 1rem;
     line-height: 1;
 }
+
+
+/* ========== Current chapter section navigation ========== */
+
+#quarto-sidebar .current-chapter-sections {
+    display: block !important;
+    margin: 0.25rem 0 0.55rem 0 !important;
+    padding: 0 0 0 1.35rem !important;
+    list-style: none !important;
+}
+
+#quarto-sidebar .current-chapter-sections li {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+#quarto-sidebar .current-chapter-sections a {
+    display: block;
+    padding: 0.18rem 0.35rem;
+    border-left: 1px solid rgba(128, 128, 128, 0.25);
+    color: var(--bs-body-color);
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+#quarto-sidebar .current-chapter-sections a:hover {
+    color: var(--bs-link-color);
+    border-left-color: var(--bs-link-color);
+}
+
+#quarto-sidebar .current-chapter-sections a.active {
+    color: var(--bs-link-color);
+    border-left: 2px solid var(--bs-link-color);
+    font-weight: 600;
+}

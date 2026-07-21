@@ -367,6 +367,89 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<script>
+(function () {
+  function initializeCurrentChapterSections() {
+    const sidebar = document.querySelector("#quarto-sidebar");
+    const activeLink = sidebar && sidebar.querySelector(
+      "a.sidebar-link.active, a.sidebar-link[aria-current='page']"
+    );
+    if (!activeLink || !activeLink.querySelector(".chapter-number")) return;
+
+    const activeItem = activeLink.closest("li.sidebar-item");
+    if (!activeItem || activeItem.querySelector(":scope > ul.current-chapter-sections")) return;
+
+    const headings = Array.from(
+      document.querySelectorAll(
+        "main.content > section.level2 > h2, " +
+        "main.content > section.level1 > section.level2 > h2"
+      )
+    ).filter(function (heading) {
+      const section = heading.closest("section.level2");
+      return !!(heading.id || (section && section.id));
+    });
+    if (!headings.length) return;
+
+    const list = document.createElement("ul");
+    list.className = "current-chapter-sections";
+    list.setAttribute("aria-label", "当前章小节");
+
+    const links = new Map();
+
+    headings.forEach(function (heading) {
+      const section = heading.closest("section.level2");
+      const id = heading.id || section.id;
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+
+      link.href = "#" + encodeURIComponent(id);
+      link.textContent = heading.textContent.trim();
+      link.dataset.sectionId = id;
+
+      item.appendChild(link);
+      list.appendChild(item);
+      links.set(id, link);
+    });
+
+    activeItem.appendChild(list);
+
+    function setActiveSection(id) {
+      links.forEach(function (link, sectionId) {
+        link.classList.toggle("active", sectionId === id);
+      });
+    }
+
+    const initialId = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+    if (initialId && links.has(initialId)) setActiveSection(initialId);
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        const visible = entries
+          .filter(function (entry) { return entry.isIntersecting; })
+          .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+        if (visible.length) {
+          const heading = visible[0].target;
+          const section = heading.closest("section.level2");
+          setActiveSection(heading.id || (section && section.id));
+        }
+      }, {
+        rootMargin: "-15% 0px -70% 0px",
+        threshold: 0
+      });
+
+      headings.forEach(function (heading) {
+        observer.observe(heading);
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeCurrentChapterSections);
+  } else {
+    initializeCurrentChapterSections();
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
