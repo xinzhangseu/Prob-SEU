@@ -89,6 +89,8 @@ format:
       dark: [cosmo, theme-dark.scss]
     toc: false
     css: styles.css
+    include-after-body:
+      - sidebar-sections.html
     crossref:
       chapters: true
       eq-prefix: ""
